@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ SCHOOL_NAME_EN }} · {{ TAGLINE }}</title>
+  <meta name="description" content="Chinese and Maths private tutoring with a research-informed approach. One-to-one and small groups.">
+  <link rel="icon" href="{{ url_for('static', filename='images/teacher.jpg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/teacher.jpg') }}" alt="School logo" class="logo">
+      <div class="brand-text">
+        <span class="en">{{ SCHOOL_NAME_EN }}</span>
+        <span class="cn">{{ SCHOOL_NAME_CN }}</span>
+      </div>
+    </a>
+    <nav>
+      <a href="{{ url_for('home') }}" class="{% if request.endpoint=='home' %}active{% endif %}">Home</a>
+      <a href="{{ url_for('about') }}" class="{% if request.endpoint=='about' %}active{% endif %}">About me</a>
+      <a href="{{ url_for('contact') }}" class="{% if request.endpoint=='contact' %}active{% endif %}">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> {{ SCHOOL_NAME_EN }} · {{ SCHOOL_NAME_CN }}</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero container">
+  <h1>{{ TAGLINE }}</h1>
+  <p>We specialise in sustained progress through routine, clear explanations, spaced practice, and data-informed feedback.</p>
+</section>
+
+<section class="carousel container">
+  <div class="carousel-viewport" data-carousel>
+    {% for item in carousel %}
+    <figure class="slide">
+      <img src="{{ url_for('static', filename=item.file) }}" alt="{{ item.alt }}">
+      <figcaption>{{ item.alt }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+  <div class="carousel-controls">
+    <button class="btn" data-prev aria-label="Previous slide">‹</button>
+    <button class="btn" data-next aria-label="Next slide">›</button>
+  </div>
+</section>
+
+<section class="panels container">
+  <h2>Why families choose us</h2>
+  <div class="grid">
+    {% for a in ACCOLADES %}
+    <div class="card">{{ a }}</div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="testimonials container" id="testimonials">
+  <h2>Results that matter</h2>
+  <div class="grid">
+    {% for t in TESTIMONIALS %}
+    <blockquote class="card">
+      <p>“{{ t.text }}”</p>
+      <footer>— {{ t.name }}</footer>
+    </blockquote>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Scroll-trigger for the teacher pop-up -->
+<div class="pop-trigger container" aria-hidden="true"></div>
+
+{% endblock %}
