@@ -2,38 +2,42 @@
 {% block content %}
 
 <section class="hero container">
-  <h1>{{ TAGLINE }}</h1>
-  <p>We specialise in sustained progress through routine, clear explanations, spaced practice, and data-informed feedback.</p>
+  <h1>秀林中文网上学校 — 招生啦！</h1>
+  <p>欢迎大家来试听！授课科目：中文、数学、英语、电脑；亦可在线辅导学校功课。</p>
 </section>
 
-<section class="carousel container">
-  <div class="carousel-viewport" data-carousel>
+<section class="carousel-fullbleed" aria-label="展示图">
+  <div class="carousel-viewport" data-carousel data-autoplay="3000">
     {% for item in carousel %}
     <figure class="slide">
-      <img src="{{ url_for('static', filename=item.file) }}" alt="{{ item.alt }}">
+      <img src="{{ url_for('static', filename='images/' ~ item.file) }}" alt="{{ item.alt }}">
       <figcaption>{{ item.alt }}</figcaption>
     </figure>
     {% endfor %}
   </div>
-  <div class="carousel-controls">
-    <button class="btn" data-prev aria-label="Previous slide">‹</button>
-    <button class="btn" data-next aria-label="Next slide">›</button>
+  <div class="carousel-controls container">
+    <button class="btn ghost" data-prev aria-label="上一张">‹</button>
+    <button class="btn ghost" data-next aria-label="下一张">›</button>
   </div>
 </section>
 
+<section class="container">
+  <div class="pop-trigger" aria-hidden="true"></div>
+</section>
+
 <section class="panels container">
-  <h2>Why families choose us</h2>
+  <h2>为什么选择我们</h2>
   <div class="grid">
-    {% for a in ACCOLADES %}
+    {% for a in ACCOLADES_ZH %}
     <div class="card">{{ a }}</div>
     {% endfor %}
   </div>
 </section>
 
 <section class="testimonials container" id="testimonials">
-  <h2>Results that matter</h2>
+  <h2>家长与学生的评价</h2>
   <div class="grid">
-    {% for t in TESTIMONIALS %}
+    {% for t in TESTIMONIALS_ZH %}
     <blockquote class="card">
       <p>“{{ t.text }}”</p>
       <footer>— {{ t.name }}</footer>
@@ -41,8 +45,5 @@
     {% endfor %}
   </div>
 </section>
-
-<!-- Scroll-trigger for the teacher pop-up -->
-<div class="pop-trigger container" aria-hidden="true"></div>
 
 {% endblock %}

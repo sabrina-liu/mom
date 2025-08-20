@@ -2,26 +2,44 @@
 {% block content %}
 
 <section class="container prose">
-  <h1>About the teacher</h1>
-  <p>I am a patient, structured tutor specialising in Chinese (Mandarin) and Mathematics across primary and secondary levels. Lessons are tailored, outcomes are monitored, and practice is spaced for retention.</p>
+  <h1>关于老师</h1>
+  <p>约堡秀林中文学校目前以网课为主，通过 ZOOM 授课。课堂强调“听写—朗读—写作”的螺旋式进步，
+     1–2 年内听写量可从 50 个字提升至 600+，平均成绩长期保持 90 分以上。</p>
 
-  <h2>Approach</h2>
+  <h2>教学理念</h2>
   <ul>
-    <li><strong>Diagnostics first:</strong> short baseline to map strengths and gaps.</li>
-    <li><strong>Clear explanations:</strong> concrete examples → guided practice → independent application.</li>
-    <li><strong>Retrieval practice:</strong> spaced and interleaved to build durable knowledge.</li>
-    <li><strong>Calm accountability:</strong> weekly goals with visual progress.</li>
+    <li><strong>循序渐进：</strong>拼音与认字打底，达到 200 个字后转入人教版语文体系。</li>
+    <li><strong>以考促学：</strong>听写过关、朗诵通顺、写作达标，形成稳定正反馈。</li>
+    <li><strong>多学科协同：</strong>中文、数学、英语与电脑编程相互支持，夯实思维能力。</li>
   </ul>
 
-  <h2>Qualifications</h2>
+  <h2>精选课程</h2>
   <ul>
-    <li>MSc‑level training; 8+ years’ tutoring.</li>
-    <li>Chinese pedagogy (TCFL) and maths competition background.</li>
-    <li>Experienced with HSK, IB, IGCSE, and A‑level curricula.</li>
+    <li>中文：拼音识字、阅读理解、写作训练（含世界华文作文大赛备赛）。</li>
+    <li>数学：小学至高中分层教学，人教数学为主线。</li>
+    <li>英语：语法与阅读理解，由准大学生助教授课（A-Level 英语 A+）。</li>
+    <li>电脑：编程启蒙与实作，寓教于乐，深受学生欢迎。</li>
   </ul>
 </section>
 
-<!-- Another trigger to showcase the character pop-in on this page as well -->
+<section class="container assistants">
+  <h2>助教老师</h2>
+  <div class="grid">
+    {% for a in ASSISTANTS %}
+    <div class="assistant card">
+      <img class="avatar" src="{{ url_for('static', filename='images/' ~ a.avatar) }}" alt="{{ a.name }} 头像" onerror="this.style.display='none'">
+      <div class="meta">
+        <h3>{{ a.name }}</h3>
+        <p>{{ a.desc }}</p>
+        <div class="char-slot">
+          <img src="{{ url_for('static', filename='images/' ~ a.char) }}" alt="{{ a.name }} 卡通形象" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
 <div class="pop-trigger container" aria-hidden="true"></div>
 
 {% endblock %}

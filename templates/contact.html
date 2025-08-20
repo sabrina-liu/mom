@@ -1,33 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="container">
-  <h1>Contact</h1>
-  <p>Please use the form below. We usually reply within one working day.</p>
-  {% with messages = get_flashed_messages(with_categories=True) %}
-    {% if messages %}
-      <div class="flash">
-        {% for cat, msg in messages %}
-          <div class="flash-{{ cat }}">{{ msg }}</div>
-        {% endfor %}
-      </div>
-    {% endif %}
-  {% endwith %}
-
-  <form method="post" class="contact-form" novalidate>
-    <label>Full name
-      <input type="text" name="name" required>
-    </label>
-    <label>Email
-      <input type="email" name="email" required>
-    </label>
-    <label>Message
-      <textarea name="message" rows="6" required></textarea>
-    </label>
-    <button class="btn" type="submit">Send message</button>
-  </form>
+<section class="container prose">
+  <h1>联系我们</h1>
+  <p>请扫码添加微信咨询与预约试听。</p>
 </section>
 
-<div class="pop-trigger container" aria-hidden="true"></div>
+<section class="container qr-wrap">
+  <img class="qr" src="{{ url_for('static', filename='images/wechat_qr.png') }}" alt="微信二维码（请替换图片）" onerror="this.src='{{ url_for('static', filename='images/teacher.jpg') }}'">
+  <p class="qr-note">将您的微信二维码图片命名为 <code>wechat_qr.png</code> 并放入 <code>static/images/</code> 目录。</p>
+</section>
 
 {% endblock %}

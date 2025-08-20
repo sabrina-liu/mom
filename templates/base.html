@@ -1,28 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ SCHOOL_NAME_EN }} · {{ TAGLINE }}</title>
-  <meta name="description" content="Chinese and Maths private tutoring with a research-informed approach. One-to-one and small groups.">
+  <title>{{ SCHOOL_NAME_ZH }} · {{ TAGLINE_ZH }}</title>
+  <meta name="description" content="秀林中文学校：中文、数学、英语、电脑，线上小班与一对一。">
   <link rel="icon" href="{{ url_for('static', filename='images/teacher.jpg') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script defer src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
-<body>
-<header class="site-header">
-  <div class="container nav">
+<body data-motto="{{ MOTTO_ZH }}">
+<header class="site-header" role="banner">
+  <div class="nav container">
     <a class="brand" href="{{ url_for('home') }}">
-      <img src="{{ url_for('static', filename='images/teacher.jpg') }}" alt="School logo" class="logo">
-      <div class="brand-text">
-        <span class="en">{{ SCHOOL_NAME_EN }}</span>
-        <span class="cn">{{ SCHOOL_NAME_CN }}</span>
-      </div>
+      <img src="{{ url_for('static', filename='images/teacher.jpg') }}" alt="校徽" class="logo">
+      <span class="brand-zh">{{ SCHOOL_NAME_ZH }}</span>
     </a>
-    <nav>
-      <a href="{{ url_for('home') }}" class="{% if request.endpoint=='home' %}active{% endif %}">Home</a>
-      <a href="{{ url_for('about') }}" class="{% if request.endpoint=='about' %}active{% endif %}">About me</a>
-      <a href="{{ url_for('contact') }}" class="{% if request.endpoint=='contact' %}active{% endif %}">Contact</a>
+    <nav class="primary-nav" role="navigation" aria-label="主菜单">
+      <a href="{{ url_for('home') }}" class="{% if request.endpoint=='home' %}active{% endif %}">首页</a>
+      <a href="{{ url_for('about') }}" class="{% if request.endpoint=='about' %}active{% endif %}">关于老师</a>
+      <a href="{{ url_for('gallery') }}" class="{% if request.endpoint=='gallery' %}active{% endif %}">画廊</a>
+      <a href="{{ url_for('contact') }}" class="{% if request.endpoint=='contact' %}active{% endif %}">联系我们</a>
     </nav>
   </div>
 </header>
@@ -33,7 +31,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <p>© <span id="year"></span> {{ SCHOOL_NAME_EN }} · {{ SCHOOL_NAME_CN }}</p>
+    <p>© <span id="year"></span> {{ SCHOOL_NAME_ZH }}</p>
   </div>
 </footer>
 </body>

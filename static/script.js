@@ -1,71 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Update footer year
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Carousel logic with natural 'magnetism' using CSS scroll-snap + arrows
-  const viewport = document.querySelector('[data-carousel]');
+  // Full-bleed carousel with autoplay every 3s
+  const viewport = document.querySelector('.carousel-viewport');
   const prevBtn = document.querySelector('[data-prev]');
   const nextBtn = document.querySelector('[data-next]');
+  let index = 0, timer = null, pause = false;
 
-  if (viewport && prevBtn && nextBtn) {
-    const slides = () => Array.from(viewport.querySelectorAll('.slide'));
-    let index = 0;
+  function slides() { return Array.from(document.querySelectorAll('.slide')); }
+  function goTo(i) {
+    const s = slides();
+    if (!s.length) return;
+    index = (i + s.length) % s.length;
+    s[index].scrollIntoView({behavior: 'smooth', inline: 'start'});
+  }
+  function startAutoplay() {
+    stopAutoplay();
+    const delay = parseInt(viewport?.dataset.autoplay || "3000", 10);
+    timer = setInterval(() => { if (!pause) goTo(index + 1); }, delay);
+  }
+  function stopAutoplay() { if (timer) clearInterval(timer); timer = null; }
 
-    function goTo(i) {
-      const s = slides();
-      index = Math.max(0, Math.min(i, s.length - 1));
-      s[index].scrollIntoView({behavior: 'smooth', inline: 'start'});
-    }
-
-    prevBtn.addEventListener('click', () => goTo(index - 1));
-    nextBtn.addEventListener('click', () => goTo(index + 1));
-
-    // Track current slide by observing scroll position
+  if (viewport) {
     viewport.addEventListener('scroll', () => {
       const s = slides();
-      const offsets = s.map(slide => Math.abs(slide.getBoundingClientRect().left - viewport.getBoundingClientRect().left));
+      const vp = viewport.getBoundingClientRect();
+      const offsets = s.map(slide => Math.abs(slide.getBoundingClientRect().left - vp.left));
       index = offsets.indexOf(Math.min(...offsets));
     }, {passive: true});
 
-    // Drag-to-scroll (nice on desktop)
-    let isDown = false, startX = 0, startScroll = 0;
-    viewport.addEventListener('pointerdown', (e) => {
-      isDown = true;
-      startX = e.clientX;
-      startScroll = viewport.scrollLeft;
-      viewport.setPointerCapture(e.pointerId);
-    });
-    viewport.addEventListener('pointermove', (e) => {
-      if (!isDown) return;
-      const dx = e.clientX - startX;
-      viewport.scrollLeft = startScroll - dx;
-    });
-    ['pointerup','pointercancel','mouseleave'].forEach(ev => viewport.addEventListener(ev, () => {
-      isDown = false;
-    }));
+    prevBtn?.addEventListener('click', () => goTo(index - 1));
+    nextBtn?.addEventListener('click', () => goTo(index + 1));
 
-    // Keyboard support
-    viewport.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') goTo(index + 1);
-      if (e.key === 'ArrowLeft') goTo(index - 1);
-    });
+    viewport.addEventListener('mouseenter', () => pause = true);
+    viewport.addEventListener('mouseleave', () => pause = false);
+    viewport.addEventListener('pointerdown', () => pause = true);
+    window.addEventListener('blur', () => pause = true);
+    window.addEventListener('focus', () => pause = false);
+
+    startAutoplay();
   }
 
-  // IntersectionObserver to show the teacher character when reaching the trigger
+  // Scroll-based pop-up: teacher left + motto right
   const trigger = document.querySelector('.pop-trigger');
   if (trigger) {
-    const img = document.createElement('img');
-    img.src = '/static/images/teacher.jpg';
-    img.alt = 'Teacher character';
-    img.className = 'teacher-pop';
-    document.body.appendChild(img);
+    const wrap = document.createElement('div');
+    wrap.className = 'teacher-float';
+
+    const left = document.createElement('img');
+    left.src = '/static/images/teacher.jpg';
+    left.alt = '林老师卡通形象';
+    left.className = 'teacher-left';
+
+    const right = document.createElement('div');
+    right.className = 'motto-right';
+    const q = document.createElement('q');
+    q.textContent = document.body.dataset?.motto || "小朋友快坐好！林老师要开始上网课啦！";
+    right.appendChild(q);
+
+    wrap.appendChild(left); wrap.appendChild(right);
+    document.body.appendChild(wrap);
 
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) img.classList.add('show');
-        else img.classList.remove('show');
-      });
+      entries.forEach(entry => { wrap.classList.toggle('show', entry.isIntersecting); });
     }, {threshold: 0.2});
     io.observe(trigger);
   }
