@@ -3,43 +3,77 @@
 
 <section class="container prose">
   <h1>关于老师</h1>
-  <p>约堡秀林中文学校目前以网课为主，通过 ZOOM 授课。课堂强调“听写—朗读—写作”的螺旋式进步，
-     1–2 年内听写量可从 50 个字提升至 600+，平均成绩长期保持 90 分以上。</p>
+  <div class="bio-grid teacher-bio">
+    <img
+      class="bio-photo"
+      src="{{ url_for('static', filename='images/nancy.jpg') }}"
+      onerror="this.src='{{ url_for('static', filename='images/nancy.jpg') }}'"
+      alt="林老师照片">
+    <div class="bio-text">
+      <p>约堡秀林中文学校目前以网课为主，通过 ZOOM 授课。课堂强调“听写—朗读—写作”的螺旋式进步，
+         1–2 年内听写量可从 50 个字提升至 600+，平均成绩长期保持 90 分以上。</p>
 
-  <h2>教学理念</h2>
-  <ul>
-    <li><strong>循序渐进：</strong>拼音与认字打底，达到 200 个字后转入人教版语文体系。</li>
-    <li><strong>以考促学：</strong>听写过关、朗诵通顺、写作达标，形成稳定正反馈。</li>
-    <li><strong>多学科协同：</strong>中文、数学、英语与电脑编程相互支持，夯实思维能力。</li>
-  </ul>
+      <h2>教学理念</h2>
+      <ul>
+        <li><strong>循序渐进：</strong>拼音与认字打底，达到 200 个字后转入人教版语文体系。</li>
+        <li><strong>以考促学：</strong>听写过关、朗诵通顺、写作达标，形成稳定正反馈。</li>
+        <li><strong>多学科协同：</strong>中文、数学、英语与电脑编程相互支持，夯实思维能力。</li>
+      </ul>
 
-  <h2>精选课程</h2>
-  <ul>
-    <li>中文：拼音识字、阅读理解、写作训练（含世界华文作文大赛备赛）。</li>
-    <li>数学：小学至高中分层教学，人教数学为主线。</li>
-    <li>英语：语法与阅读理解，由准大学生助教授课（A-Level 英语 A+）。</li>
-    <li>电脑：编程启蒙与实作，寓教于乐，深受学生欢迎。</li>
-  </ul>
-</section>
-
-<section class="container assistants">
-  <h2>助教老师</h2>
-  <div class="grid">
-    {% for a in ASSISTANTS %}
-    <div class="assistant card">
-      <img class="avatar" src="{{ url_for('static', filename='images/' ~ a.avatar) }}" alt="{{ a.name }} 头像" onerror="this.style.display='none'">
-      <div class="meta">
-        <h3>{{ a.name }}</h3>
-        <p>{{ a.desc }}</p>
-        <div class="char-slot">
-          <img src="{{ url_for('static', filename='images/' ~ a.char) }}" alt="{{ a.name }} 卡通形象" onerror="this.style.display='none'">
-        </div>
-      </div>
+      <h2>精选课程</h2>
+      <ul>
+        <li>中文：拼音识字、阅读理解、写作训练（含世界华文作文大赛备赛）。</li>
+        <li>数学：小学至高中分层教学，人教数学为主线。</li>
+        <li>英语：语法与阅读理解，由准大学生助教授课（A-Level 英语 A+）。</li>
+        <li>电脑：编程启蒙与实作，寓教于乐，深受学生欢迎。</li>
+      </ul>
     </div>
-    {% endfor %}
   </div>
 </section>
 
-<div class="pop-trigger container" aria-hidden="true"></div>
+<section class="container prose">
+  <h2>助教老师</h2>
 
+  <!-- 助教 1 -->
+  <article class="bio-grid assistant-bio">
+    <img
+      class="bio-photo sm"
+      src="{{ url_for('static', filename='images/sab.jpg') }}"
+      alt="刘妍希（Sabrina）照片"
+      onerror="this.style.display='none'">
+    <div class="bio-text">
+      <h3>刘妍希 · Sabrina（女儿）</h3>
+      <p>阿姆斯特丹大学本科毕业，中文与英文俱佳，擅长写作表达与阅读理解训练。</p>
+      <ul>
+        <li>写作框架与段落结构指导</li>
+        <li>阅读理解技巧与词汇扩展</li>
+      </ul>
+      <div class="char-slot">
+        <img src="{{ url_for('static', filename='images/character1.png') }}" alt="刘妍希卡通形象" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </article>
+
+  <!-- 助教 2 -->
+  <article class="bio-grid assistant-bio">
+    <img
+      class="bio-photo sm"
+      src="{{ url_for('static', filename='images/seb.jpg') }}"
+      alt="刘宇酌（Sebastian）照片"
+      onerror="this.style.display='none'">
+    <div class="bio-text">
+      <h3>刘宇酌 · Sebastian（儿子）</h3>
+      <p>海外大学理工科背景，擅长数学与编程启蒙，授课耐心，逻辑清晰。</p>
+      <ul>
+        <li>分层数学讲解与习题精练</li>
+        <li>Scratch / Python 编程兴趣导入</li>
+      </ul>
+      <div class="char-slot">
+        <img src="{{ url_for('static', filename='images/logo_txt.png') }}" alt="刘宇酌卡通形象" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </article>
+</section>
+
+<div class="pop-trigger container" aria-hidden="true"></div>
 {% endblock %}

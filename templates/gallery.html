@@ -6,12 +6,25 @@
   <p>课堂与活动精彩瞬间。</p>
 </section>
 
-<section class="container gallery-grid">
-  {% for f in files %}
-  <figure class="card">
-    <img src="{{ url_for('static', filename='images/' ~ f) }}" alt="图片 {{ loop.index }}">
-  </figure>
-  {% endfor %}
+<section class="container">
+  <div class="gallery-masonry" id="gallery">
+    {% for f in files %}
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="{{ url_for('static', filename='images/' ~ f) }}"
+             alt="图片 {{ loop.index }}">
+      </figure>
+    {% endfor %}
+  </div>
 </section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" aria-label="关闭">×</button>
+  <button class="lightbox-nav prev" aria-label="上一张">‹</button>
+  <img class="lightbox-img" alt="">
+  <button class="lightbox-nav next" aria-label="下一张">›</button>
+  <div class="lightbox-counter" aria-live="polite"></div>
+</div>
 
 {% endblock %}
