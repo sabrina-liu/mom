@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ SCHOOL_NAME_ZH }} · {{ TAGLINE_ZH }}</title>
-  <meta name="description" content="秀林中文学校：中文、数学、英语、电脑，线上小班与一对一。">
+  <meta name="description" content="林老师：中文、数学、英语、线上小班与一对一。">
   <link rel="icon" href="{{ url_for('static', filename='images/head.PNG') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <script defer src="{{ url_for('static', filename='script.js') }}"></script>
@@ -21,7 +21,7 @@
       <a href="{{ url_for('home') }}" class="{% if request.endpoint=='home' %}active{% endif %}">首页</a>
       <a href="{{ url_for('about') }}" class="{% if request.endpoint=='about' %}active{% endif %}">关于老师</a>
       <a href="{{ url_for('gallery') }}" class="{% if request.endpoint=='gallery' %}active{% endif %}">画廊</a>
-      <a href="{{ url_for('contact') }}" class="{% if request.endpoint=='contact' %}active{% endif %}">联系我们</a>
+      <a href="{{ url_for('contact') }}" class="{% if request.endpoint=='contact' %}active{% endif %}">联系我</a>
     </nav>
   </div>
 </header>

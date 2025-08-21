@@ -2,13 +2,18 @@
 {% block content %}
 
 <section class="container prose">
-  <h1>联系我们</h1>
-  <p>请扫码添加微信咨询与预约试听。</p>
+  <h1>加个微信</h1>
+  <p>当添加当天回。马上添加微信订购吧 ;-) :wink:</p>
 </section>
 
-<section class="container qr-wrap">
-  <img class="qr" src="{{ url_for('static', filename='images/wechat_qr.png') }}" alt="微信二维码（请替换图片）" onerror="this.src='{{ url_for('static', filename='images/teacher.jpg') }}'">
-  <p class="qr-note">将您的微信二维码图片命名为 <code>wechat_qr.png</code> 并放入 <code>static/images/</code> 目录。</p>
+<section class="center">
+  <div class="overlap">
+    <img src="{{ url_for('static', filename='images/hi.PNG') }}" alt="">
+    <img class="qr" src="{{ url_for('static', filename='images/wechat_qr.jpg') }}" alt="微信二维码">
+  </div>
 </section>
+
+
+
 
 {% endblock %}

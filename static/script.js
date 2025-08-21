@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (current < spv) { current = n + spv - 1; setTransform(false); }
     });
 
-    function start() { stop();  next(); timer = setInterval(next, delay); }
+    function start() { stop(); next(); timer = setInterval(next, delay); }
     function stop()  { if (timer) { clearInterval(timer); timer = null; } }
 
     viewport.addEventListener('click', next);
@@ -60,53 +60,37 @@ document.addEventListener('DOMContentLoaded', () => {
     start();
   }
 
-// Scroll-based pop-up: bottom-right image + quote; click → contact
-const trigger = document.querySelector('.pop-trigger');
-if (trigger) {
-  const wrap = document.createElement('div');
-  wrap.className = 'teacher-float';
+  // ===== POPUP (image only), bottom-right =====
+  const trigger = document.querySelector('.pop-trigger');
+  if (trigger) {
+    const wrap = document.createElement('div');
+    wrap.className = 'teacher-float';
 
-  const img = document.createElement('img');
-  img.src = '/static/images/mom.PNG';
-  img.alt = '林老师卡通形象';
-  img.className = 'teacher-left';
-  img.onerror = () => { img.src = '/static/images/teacher.jpg'; };
+    const img = document.createElement('img');
+    img.src = '/static/images/hi.png';     // make sure the filename case matches
+    img.alt = '老师形象';
+    img.className = 'teacher-left';
+    img.onerror = () => { img.src = '/static/images/hi.png'; };
 
-  const quoteBox = document.createElement('div');
-  quoteBox.className = 'motto-right';
-  const q = document.createElement('q');
-  q.textContent = document.body.dataset?.motto || '小朋友快坐好！林老师要开始上网课啦！';
-  quoteBox.appendChild(q);
+    wrap.appendChild(img);                 // image only, no quote
+    document.body.appendChild(wrap);
 
-  // Order doesn’t matter because CSS uses row-reverse, but this is explicit:
-  wrap.appendChild(img);       // right
-  wrap.appendChild(quoteBox);  // left
-  document.body.appendChild(wrap);
+    // click → contact
+    const contactUrl = document.body.dataset?.contact || '/contact';
+    wrap.addEventListener('click', () => { window.location.href = contactUrl; });
 
-  // Click anywhere on the popup to go to /contact
-  const contactUrl = document.body.dataset?.contact || '/contact';
-  wrap.addEventListener('click', () => { window.location.href = contactUrl; });
+    // reveal when near viewport bottom
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting){ wrap.classList.add('show'); io.disconnect(); }
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    io.observe(trigger);
 
-  // Reveal when near viewport bottom
-  const io = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting){
-      wrap.classList.add('show');
-      io.disconnect();
-    }
-  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
-  io.observe(trigger);
-
-  // If already visible on short pages, show immediately
-  if (trigger.getBoundingClientRect().top < window.innerHeight) {
-    wrap.classList.add('show');
+    if (trigger.getBoundingClientRect().top < window.innerHeight) wrap.classList.add('show');
   }
-}
-
 
   // ===== GALLERY LIGHTBOX =====
   const gallery = document.getElementById('gallery');
   if (gallery) {
-    // Ensure lightbox exists; create if missing
     let box = document.getElementById('lightbox');
     if (!box) {
       box = document.createElement('div');
@@ -156,16 +140,15 @@ if (trigger) {
     }, { passive: true });
   }
 
-  // Bottom CTA reveal
+  // ===== Bottom CTA reveal =====
   const cta = document.getElementById('cta-quote');
   if (cta){
     const io = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting){
         cta.classList.add('is-inview');
-        io.disconnect(); // run once
+        io.disconnect();
       }
     }, { threshold: 0.25 });
     io.observe(cta);
   }
-
 });

@@ -1,9 +1,9 @@
 from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
-app.secret_key = "change-me"
+app.secret_key = "xiaobudian"
 
-SCHOOL_NAME_ZH = "秀林中文学校"
+SCHOOL_NAME_ZH = "林老师"
 TAGLINE_ZH = "中文 · 数学 · 英语 · 网课"
 
 CAROUSEL = [
@@ -27,8 +27,6 @@ TESTIMONIALS_ZH = [
     {"name": "Arjun 家长", "text": "孩子自信大增——结构清晰、循循善诱、方法到位。"},
 ]
 
-MOTTO_ZH = "小朋友上课啦"
-
 ASSISTANTS = [
     {
         "name": "刘老师（女儿）",
@@ -51,8 +49,6 @@ def inject_globals():
         TAGLINE_ZH=TAGLINE_ZH,
         ACCOLADES_ZH=ACCOLADES_ZH,
         TESTIMONIALS_ZH=TESTIMONIALS_ZH,
-        MOTTO_ZH=MOTTO_ZH,
-        ASSISTANTS=ASSISTANTS
     )
 
 @app.route("/")

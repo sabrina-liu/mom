@@ -44,15 +44,18 @@
 
 <section class="container cta-quote" id="cta-quote">
   <div class="cta-grid">
+    <div class="cta-char-wrap">
     <img
       class="cta-char"
       src="{{ url_for('static', filename='images/mom.PNG') }}"
       onerror="this.src='{{ url_for('static', filename='images/mom.PNG') }}'"
       alt="老师卡通形象">
+    </div>
     <blockquote class="cta-text">
       <q>认真学，也要开开心心学。</q>   {# ← change to any short, cute motto #}
     </blockquote>
   </div>
 </section>
+
 
 {% endblock %}
