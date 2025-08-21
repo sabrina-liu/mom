@@ -8,7 +8,7 @@ TAGLINE_ZH = "中文 · 数学 · 英语 · 网课"
 
 CAROUSEL = [
     {"file": "64a3a280fb09f48fb03ee2cfb325c461.jpg", "alt": "课堂剪影"},
-    {"file": "teacher.jpg", "alt": "拼音与认字"},
+    {"file": "profile.JPG", "alt": "拼音与认字"},
     {"file": "39e9a3d3daa2195c0f9bf47f53d38f66.jpg", "alt": "数学辅导"},
     {"file": "023e52a1e9e17e200ea5d0aaeb46ee82.jpg", "alt": "作文比赛获奖"},
     {"file": "IMG_0222.jpg", "alt": "线上课堂 Zoom"},
