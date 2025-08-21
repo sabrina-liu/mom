@@ -43,11 +43,11 @@ def inject_globals():
 def home():
     return render_template("index.html", carousel=CAROUSEL)
 
-@app.route("/about")
+@app.route("/about/")
 def about():
     return render_template("about.html")
 
-@app.route("/gallery")
+@app.route("/gallery/")
 def gallery():
     import os
     files = [f for f in os.listdir("static/images") if f.lower().endswith((".jpg",".jpeg",".png",".webp",".gif")) and f not in ("wechat_qr.png",)]
@@ -56,7 +56,7 @@ def gallery():
         files = [c["file"] for c in CAROUSEL]
     return render_template("gallery.html", files=files)
 
-@app.route("/contact")
+@app.route("/contact/")
 def contact():
     return render_template("contact.html")
 
