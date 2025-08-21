@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>林老师 · 中文 · 数学 · 英语 · 网课 · 团体课 · 一对一</title>
+  <meta name="description" content="林老师：中文、数学、英语、线上小班与一对一。">
+  <link rel="icon" href="static/images/head.PNG">
+  <link rel="stylesheet" href="static/style.css">
+  <script defer src="static/script.js"></script>
+</head>
+<body data-motto="" data-contact="contact">
+
+<header class="site-header" role="banner">
+  <div class="nav container">
+    <a class="brand" href="index.html">
+      <img src="static/images/logo.png" alt="校徽" class="logo">
+      <!-- <span class="brand-zh">林老师</span> -->
+    </a>
+    <nav class="primary-nav" role="navigation" aria-label="主菜单">
+      <a href="index.html" class="">首页</a>
+      <a href="about" class="">关于老师</a>
+      <a href="gallery" class="active">画廊</a>
+      <a href="contact" class="">联系我</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  
+
+<section class="container prose">
+  <h1>画廊</h1>
+  <p>老师日常生活</p>
+</section>
+
+<section class="container">
+  <div class="gallery-masonry" id="gallery">
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/023e52a1e9e17e200ea5d0aaeb46ee82.jpg"
+             alt="图片 1">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/39c7d2b51f19ee6b434563b88ff91cd5.jpg"
+             alt="图片 2">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/39e9a3d3daa2195c0f9bf47f53d38f66.jpg"
+             alt="图片 3">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/64a3a280fb09f48fb03ee2cfb325c461.jpg"
+             alt="图片 4">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/IMG_0222.jpg"
+             alt="图片 5">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/e6f3881f388457dd6cab4920c0dc1bd6.jpg"
+             alt="图片 6">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/head.PNG"
+             alt="图片 7">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/hi.png"
+             alt="图片 8">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/iam.PNG"
+             alt="图片 9">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/logo.png"
+             alt="图片 10">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/mom.PNG"
+             alt="图片 11">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/nancy.jpg"
+             alt="图片 12">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/sab.jpg"
+             alt="图片 13">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/seb.jpg"
+             alt="图片 14">
+      </figure>
+    
+      <figure class="masonry-item">
+        <img loading="lazy"
+             src="static/images/wechat_qr.jpg"
+             alt="图片 15">
+      </figure>
+    
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" aria-label="关闭">×</button>
+  <button class="lightbox-nav prev" aria-label="上一张">‹</button>
+  <img class="lightbox-img" alt="">
+  <button class="lightbox-nav next" aria-label="下一张">›</button>
+  <div class="lightbox-counter" aria-live="polite"></div>
+</div>
+
+<div class="pop-trigger" aria-hidden="true" style="height:1px"></div>
+
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> 林老师</p>
+  </div>
+</footer>
+</body>
+</html>

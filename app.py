@@ -8,23 +8,25 @@ TAGLINE_ZH = "中文 · 数学 · 英语 · 网课 · 团体课 · 一对一"
 
 CAROUSEL = [
     {"file": "64a3a280fb09f48fb03ee2cfb325c461.jpg", "alt": "课堂剪影"},
-    {"file": "profile.JPG", "alt": "拼音与认字"},
-    {"file": "39e9a3d3daa2195c0f9bf47f53d38f66.jpg", "alt": "数学辅导"},
-    {"file": "023e52a1e9e17e200ea5d0aaeb46ee82.jpg", "alt": "作文比赛获奖"},
-    {"file": "IMG_0222.jpg", "alt": "线上课堂 Zoom"},
+    {"file": "sab.jpg", "alt": "Sabrina老师"},
+    {"file": "39e9a3d3daa2195c0f9bf47f53d38f66.jpg", "alt": "线上课堂"},
+    {"file": "023e52a1e9e17e200ea5d0aaeb46ee82.jpg", "alt": "英语课"},
+    {"file": "IMG_0222.jpg", "alt": "林老师家人"},
+    {"file": "seb.jpg", "alt": "Sebastian老师"},
+
 ]
 
 ACCOLADES_ZH = [
-    "多年一线教学，专注中文与数学分层教学",
-    "考试方向明确：HSK、IB、IGCSE、A-Level",
-    "班级听写通过率 100%，平均成绩 90 分以上",
-    "注重习惯培养：听写、朗读、复述与写作并进"
+    "十年以上的教课经验",
+    "深受学生和家长的喜爱",
+    "所有孩子都欢迎",
+    "网课时间方便"
 ]
 
 TESTIMONIALS_ZH = [
-    {"name": "Bobby 家长, 约堡", "text": "跟林老师学了一年，Bobby 现在是学校数学第一名。"},
-    {"name": "Mei，哈拉雷 ", "text": "从零基础开始，10 个月通过 HSK4，阅读写作明显进步。"},
-    {"name": "Arjun 家长，开普敦", "text": "孩子自信大增——结构清晰、循循善诱、方法到位。"},
+    {"name": "Bobby家长, 约堡", "text": "跟林老师学了一年，Bobby 现在是学校数学第一名。"},
+    {"name": "彬彬，哈拉雷 ", "text": "林老师又好笑又凶，我超喜欢她！"},
+    {"name": "安安家长，开普敦", "text": "孩子自信大增——结构清晰、循循善诱、方法到位。"},
 ]
 
 

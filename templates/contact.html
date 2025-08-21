@@ -1,19 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="container prose">
-  <h1>加个微信</h1>
-  <p>当添加当天回。马上添加微信订购吧 ;-) :wink:</p>
-</section>
-
-<section class="center">
-  <div class="overlap">
-    <img src="{{ url_for('static', filename='images/hi.PNG') }}" alt="">
-    <img class="qr" src="{{ url_for('static', filename='images/wechat_qr.jpg') }}" alt="微信二维码">
+<section class="container contact-grid">
+  <!-- Left: overlapped images (same size) -->
+  <div class="overlap contact-qr">
+    <img class="bg" src="{{ url_for('static', filename='images/hi.png') }}" alt="装饰图片">
+    <img class="fg" src="{{ url_for('static', filename='images/wechat_qr.jpg') }}" alt="微信二维码">
   </div>
+
+  <!-- Right: inline quote, same styling as CTA quote -->
+  <blockquote class="cta-text">
+    <q>加个微信，预约试听!</q>
+  </blockquote>
 </section>
-
-
-
 
 {% endblock %}
