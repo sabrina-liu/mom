@@ -60,21 +60,48 @@ document.addEventListener('DOMContentLoaded', () => {
     start();
   }
 
-  // ===== POP-UP (keep if you use it) =====
-  const trigger = document.querySelector('.pop-trigger');
-  if (trigger) {
-    const wrap = document.createElement('div');
-    wrap.className = 'teacher-float';
-    const left = document.createElement('img');
-    left.src = '/static/images/mom.PNG';
-    left.alt = '林老师卡通形象';
-    left.className = 'teacher-left';
-    left.onerror = () => { left.src = '/static/images/teacher.jpg'; };
-    const right = document.createElement('div'); right.className = 'motto-right';
-    const q = document.createElement('q'); q.textContent = document.body.dataset?.motto || '小朋友快坐好！林老师要开始上网课啦！';
-    right.appendChild(q); wrap.appendChild(left); wrap.appendChild(right); document.body.appendChild(wrap);
-    new IntersectionObserver((entries)=>entries.forEach(e=>wrap.classList.toggle('show', e.isIntersecting)), {threshold:0.2}).observe(trigger);
+// Scroll-based pop-up: bottom-right image + quote; click → contact
+const trigger = document.querySelector('.pop-trigger');
+if (trigger) {
+  const wrap = document.createElement('div');
+  wrap.className = 'teacher-float';
+
+  const img = document.createElement('img');
+  img.src = '/static/images/mom.PNG';
+  img.alt = '林老师卡通形象';
+  img.className = 'teacher-left';
+  img.onerror = () => { img.src = '/static/images/teacher.jpg'; };
+
+  const quoteBox = document.createElement('div');
+  quoteBox.className = 'motto-right';
+  const q = document.createElement('q');
+  q.textContent = document.body.dataset?.motto || '小朋友快坐好！林老师要开始上网课啦！';
+  quoteBox.appendChild(q);
+
+  // Order doesn’t matter because CSS uses row-reverse, but this is explicit:
+  wrap.appendChild(img);       // right
+  wrap.appendChild(quoteBox);  // left
+  document.body.appendChild(wrap);
+
+  // Click anywhere on the popup to go to /contact
+  const contactUrl = document.body.dataset?.contact || '/contact';
+  wrap.addEventListener('click', () => { window.location.href = contactUrl; });
+
+  // Reveal when near viewport bottom
+  const io = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting){
+      wrap.classList.add('show');
+      io.disconnect();
+    }
+  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+  io.observe(trigger);
+
+  // If already visible on short pages, show immediately
+  if (trigger.getBoundingClientRect().top < window.innerHeight) {
+    wrap.classList.add('show');
   }
+}
+
 
   // ===== GALLERY LIGHTBOX =====
   const gallery = document.getElementById('gallery');

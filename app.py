@@ -27,7 +27,7 @@ TESTIMONIALS_ZH = [
     {"name": "Arjun 家长", "text": "孩子自信大增——结构清晰、循循善诱、方法到位。"},
 ]
 
-MOTTO_ZH = "小朋友快坐好！林老师要开始上网课啦！"
+MOTTO_ZH = "小朋友上课啦"
 
 ASSISTANTS = [
     {
