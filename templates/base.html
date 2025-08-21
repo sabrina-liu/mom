@@ -3,25 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ SCHOOL_NAME_ZH }} · {{ TAGLINE_ZH }}</title>
+  <title>{{ (SCHOOL_NAME_ZH|default('秀林中文网上学校')) }} · {{ (TAGLINE_ZH|default('中文·数学·英语·小班与一对一')) }}</title>
   <meta name="description" content="林老师：中文、数学、英语、线上小班与一对一。">
-  <link rel="icon" href="{{ url_for('static', filename='images/head.PNG') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+  <link rel="icon" href="/static/images/head.PNG">
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/script.js"></script>
 </head>
-<body data-motto="{{ MOTTO_ZH }}" data-contact="{{ url_for('contact') }}">
+<body data-motto="{{ MOTTO_ZH|default('认真学，也要开开心心学。') }}" data-contact="/contact/">
 
 <header class="site-header" role="banner">
   <div class="nav container">
-    <a class="brand" href="{{ url_for('home') }}">
-      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="校徽" class="logo">
-      <!-- <span class="brand-zh">{{ SCHOOL_NAME_ZH }}</span> -->
+    <a class="brand" href="/">
+      <img src="/static/images/logo.png" alt="校徽" class="logo">
+      <!-- <span class="brand-zh">{{ SCHOOL_NAME_ZH|default('秀林中文网上学校') }}</span> -->
     </a>
+
     <nav class="primary-nav" role="navigation" aria-label="主菜单">
-      <a href="{{ url_for('home') }}" class="{% if request.endpoint=='home' %}active{% endif %}">首页</a>
-      <a href="{{ url_for('about') }}" class="{% if request.endpoint=='about' %}active{% endif %}">关于老师</a>
-      <a href="{{ url_for('gallery') }}" class="{% if request.endpoint=='gallery' %}active{% endif %}">画廊</a>
-      <a href="{{ url_for('contact') }}" class="{% if request.endpoint=='contact' %}active{% endif %}">联系我</a>
+      <a href="/"          class="{{ 'active' if active=='home'    else '' }}">首页</a>
+      <a href="/about/"    class="{{ 'active' if active=='about'   else '' }}">关于老师</a>
+      <a href="/gallery/"  class="{{ 'active' if active=='gallery' else '' }}">画廊</a>
+      <a href="/contact/"  class="{{ 'active' if active=='contact' else '' }}">联系我</a>
     </nav>
   </div>
 </header>
@@ -32,7 +33,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <p>© <span id="year"></span> {{ SCHOOL_NAME_ZH }}</p>
+    <p>© <span id="year"></span> {{ SCHOOL_NAME_ZH|default('秀林中文网上学校') }}</p>
   </div>
 </footer>
 </body>

@@ -1,37 +1,77 @@
 # build_static.py
 from pathlib import Path
-from shutil import rmtree, copytree
-from app import app  # must expose "app = Flask(__name__)" and your routes
+import os, shutil
+from flask import Flask, render_template
 
-OUT = Path("build")
+ROOT = Path(__file__).parent
+TEMPLATES = ROOT / "templates"
+STATIC = ROOT / "static"
+OUT = Path(os.environ.get("OUTPUT_DIR", "public"))  # CF Pages: set to "public"
 
-# Routes to pre-render → output file
-ROUTES = [
-    ("/",            "index.html"),
-    ("/about/",      "about/index.html"),
-    ("/gallery/",    "gallery/index.html"),
-    ("/contact/",    "contact/index.html"),
-]
+app = Flask(__name__, template_folder=str(TEMPLATES), static_folder=str(STATIC))
 
-def write_text(path: Path, text: str):
+# Try to reuse your data/constants from app.py; fall back to safe defaults
+try:
+    from app import (
+        CAROUSEL, ACCOLADES_ZH, TESTIMONIALS_ZH,
+        SCHOOL_NAME_ZH, TAGLINE_ZH, MOTTO_ZH
+    )
+except Exception:
+    CAROUSEL = []
+    ACCOLADES_ZH = []
+    TESTIMONIALS_ZH = []
+    SCHOOL_NAME_ZH = "秀林中文网上学校"
+    TAGLINE_ZH = "中文·数学·英语·小班与一对一"
+    MOTTO_ZH = "认真学，也要开开心心学。"
+
+def write_html(path: Path, html: str):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
+    path.write_text(html, encoding="utf-8")
+
+def render_page(template: str, **ctx) -> str:
+    # Give Jinja a request + app context so url_for works
+    with app.app_context(), app.test_request_context("/"):
+        return render_template(template, **ctx)
+
+def main():
+    # Clean output
+    if OUT.exists():
+        shutil.rmtree(OUT)
+    OUT.mkdir(parents=True, exist_ok=True)
+
+    # Copy /static
+    shutil.copytree(STATIC, OUT / "static")
+
+    common = dict(
+        SCHOOL_NAME_ZH=SCHOOL_NAME_ZH,
+        TAGLINE_ZH=TAGLINE_ZH,
+        MOTTO_ZH=MOTTO_ZH,
+    )
+
+    # Home
+    html = render_page(
+        "index.html",
+        active="home",
+        carousel=CAROUSEL,
+        ACCOLADES_ZH=ACCOLADES_ZH,
+        TESTIMONIALS_ZH=TESTIMONIALS_ZH,
+        **common
+    )
+    write_html(OUT / "index.html", html)
+
+    # About
+    html = render_page("about.html", active="about", **common)
+    write_html(OUT / "about" / "index.html", html)
+
+    # Gallery
+    html = render_page("gallery.html", active="gallery", **common)
+    write_html(OUT / "gallery" / "index.html", html)
+
+    # Contact
+    html = render_page("contact.html", active="contact", **common)
+    write_html(OUT / "contact" / "index.html", html)
+
+    print(f"Built to: {OUT.resolve()}")
 
 if __name__ == "__main__":
-    # clean output folder
-    if OUT.exists():
-        rmtree(OUT)
-
-    # render each route under a real request context
-    with app.test_client() as client:
-        for url, outfile in ROUTES:
-            resp = client.get(url)
-            if resp.status_code != 200:
-                raise RuntimeError(f"GET {url} → {resp.status_code}")
-            html = resp.get_data(as_text=True)
-            write_text(OUT / outfile, html)
-            print(f"✓ {url} -> build/{outfile}")
-
-    # copy static assets
-    copytree("static", OUT / "static")
-    print("✅ Build complete → ./build")
+    main()
