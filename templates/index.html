@@ -1,13 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="hero container">
-  <h1>秀林中文网上学校 — 招生啦！</h1>
-  <p>欢迎大家来试听！授课科目：中文、数学、英语、电脑；亦可在线辅导学校功课。</p>
-</section>
-
 <section class="carousel-fullbleed" aria-label="展示图">
-  <div class="carousel-viewport" data-carousel data-autoplay="3000">
+  <div class="carousel-viewport" data-autoplay="3000">
     {% for item in carousel %}
     <figure class="slide">
       <img src="{{ url_for('static', filename='images/' ~ item.file) }}" alt="{{ item.alt }}">
@@ -15,10 +10,11 @@
     </figure>
     {% endfor %}
   </div>
-  <div class="carousel-controls container">
-    <button class="btn ghost" data-prev aria-label="上一张">‹</button>
-    <button class="btn ghost" data-next aria-label="下一张">›</button>
-  </div>
+</section>
+
+<section class="hero container">
+  <h1>秀林中文网上学校 — 招生啦！</h1>
+  <p>欢迎大家来试听！授课科目：中文、数学、英语、电脑；亦可在线辅导学校功课。</p>
 </section>
 
 <section class="container">
