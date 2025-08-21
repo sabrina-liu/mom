@@ -4,7 +4,7 @@ app = Flask(__name__)
 app.secret_key = "xiaobudian"
 
 SCHOOL_NAME_ZH = "林老师"
-TAGLINE_ZH = "中文 · 数学 · 英语 · 网课"
+TAGLINE_ZH = "中文 · 数学 · 英语 · 网课 · 团体课 · 一对一"
 
 CAROUSEL = [
     {"file": "64a3a280fb09f48fb03ee2cfb325c461.jpg", "alt": "课堂剪影"},
@@ -22,25 +22,11 @@ ACCOLADES_ZH = [
 ]
 
 TESTIMONIALS_ZH = [
-    {"name": "Bobby 家长", "text": "跟林老师学了一年，Bobby 现在是学校数学第一名。"},
-    {"name": "Mei", "text": "从零基础开始，10 个月通过 HSK4，阅读写作明显进步。"},
-    {"name": "Arjun 家长", "text": "孩子自信大增——结构清晰、循循善诱、方法到位。"},
+    {"name": "Bobby 家长, 约堡", "text": "跟林老师学了一年，Bobby 现在是学校数学第一名。"},
+    {"name": "Mei，哈拉雷 ", "text": "从零基础开始，10 个月通过 HSK4，阅读写作明显进步。"},
+    {"name": "Arjun 家长，开普敦", "text": "孩子自信大增——结构清晰、循循善诱、方法到位。"},
 ]
 
-ASSISTANTS = [
-    {
-        "name": "刘老师（女儿）",
-        "desc": "海外名校在读/毕业，英文与中文俱佳，擅长写作与口语表达训练。",
-        "avatar": "assistant1.jpg",
-        "char": "character1.png"
-    },
-    {
-        "name": "林老师（儿子）",
-        "desc": "海外大学理工科背景，擅长数学与编程启蒙，授课耐心、逻辑严谨。",
-        "avatar": "assistant2.jpg",
-        "char": "character2.png"
-    }
-]
 
 @app.context_processor
 def inject_globals():

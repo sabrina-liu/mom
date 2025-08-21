@@ -140,28 +140,28 @@ figure, .slide { margin: 0; padding: 0; border: 0; }
 .lightbox-nav.next{ right: 20px; }
 .lightbox-counter{ position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #fff; font-weight: 700; background: rgba(0,0,0,.35); padding: .3rem .6rem; border-radius: .4rem; }
 
-/* ===== Bottom CTA — quote LEFT, image RIGHT (original orientation) ===== */
+/* ===== Bottom CTA — force one-line: quote LEFT, image RIGHT ===== */
 .cta-quote{ padding: 2rem 0 3rem; }
 
 .cta-grid{
-  display: grid;
-  grid-template-columns: 1fr clamp(280px, 42vw, 440px); /* text grows, image has sane width */
-  align-items: center;                                   /* vertical alignment */
+  display: flex;
+  align-items: center;         /* vertical alignment */
   gap: 1.5rem;
+  flex-wrap: nowrap;           /* never stack */
 }
 
 /* QUOTE (left) */
 .cta-text{
-  grid-column: 1;
-  justify-self: start;
+  order: 1;                    /* appear first (left) */
+  flex: 1 1 auto;              /* take remaining space */
+  margin: 0;                   /* kill blockquote defaults */
   text-align: left;
   color: var(--text);
   font-size: clamp(26px, 3.6vw, 48px);
   line-height: 1.2;
   font-weight: 800;
   quotes: "“" "”";
-  margin: 0;                                            /* ← kill blockquote default margins */
-  transform: translateX(-40px);
+  transform: translateX(-24px);
   opacity: 0;
   transition: transform .7s cubic-bezier(.22,.89,.34,1.11) .06s, opacity .7s .06s;
 }
@@ -176,27 +176,27 @@ figure, .slide { margin: 0; padding: 0; border: 0; }
 
 /* IMAGE (right) */
 .cta-char-wrap{
-  grid-column: 2;
-  justify-self: end;
-  width: clamp(280px, 42vw, 440px);
+  order: 2;                    /* appear second (right) */
+  flex: 0 0 clamp(280px, 42vw, 440px);
+  max-width: 100%;
 }
 .cta-char{
   width: 100%;
   height: auto;
-  transform: translateY(40px); /* slide only; keep original orientation */
+  transform: translateY(40px); /* slide only; original orientation */
   opacity: 0;
   filter: drop-shadow(0 24px 40px rgba(0,0,0,.35));
   transition: transform .7s cubic-bezier(.22,.89,.34,1.11), opacity .7s;
 }
 
-/* activate on reveal */
+/* reveal */
 .cta-quote.is-inview .cta-text{ transform: translateX(0); opacity: 1; }
 .cta-quote.is-inview .cta-char{ transform: translateY(0); opacity: 1; }
 
-/* mobile stack — lower breakpoint so it stays side-by-side on tablets */
-@media (max-width: 640px){
-  .cta-grid{ grid-template-columns: 1fr; align-items: start; }
-  .cta-char-wrap{ justify-self: start; width: min(82vw, 440px); }
-  .cta-text{ transform: translateX(-24px); }
-  .cta-quote.is-inview .cta-text{ transform: translateX(0); }
+/* Optional: if you still want stacking on very tiny screens, uncomment: */
+@media (max-width: 420px){
+.cta-grid{ flex-wrap: wrap; }
+.cta-char-wrap{ flex-basis: 100%; order: 2; }
 }
+
+
