@@ -48,7 +48,7 @@ img { max-width: 100%; display: block; }
   transform: scaleX(1);
 }
 
-}
+
 /* Footer */
 .site-footer { margin-top: 4rem; padding: 2rem 0; border-top: 1px solid rgba(255,255,255,.08); background: #041F1E; }
 .site-footer p { margin: 0; color: #cfe2dc; font-size: var(--step--1); }
