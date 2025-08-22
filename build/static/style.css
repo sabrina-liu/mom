@@ -213,13 +213,20 @@ figure, .slide { margin: 0; padding: 0; border: 0; }
   clip:rect(0 0 0 0);white-space:nowrap;border:0;
 }
 
-
-
-/* === Patch: Mobile QR centring & background image handling === */
+/* ===== Contact: mobile QR fix ===== */
 @media (max-width: 680px){
-  .contact-grid{ flex-direction: column; align-items: center; gap: 1rem; padding-left: 0; }
-  .contact-qr.overlap{ width: min(84vw, 420px); margin: 0 auto; }
+  .contact-grid{
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 0;
+  }
+  .contact-qr.overlap{
+    width: min(84vw, 420px);
+    margin: 0 auto;
+    justify-items: center;
+  }
   .contact-qr.overlap img{ transform: none !important; }
-  .contact-qr.overlap .bg{ display: none; } /* hide decorative bg; ensures QR never clipped */
-  .contact-grid .cta-text{ text-align: center; }
+  .contact-qr.overlap .bg{ display: none; } /* hide hi.png so QR is primary */
+  .cta-text{ text-align: center; }
 }
