@@ -2,13 +2,12 @@
 {% block content %}
 
 <section class="container prose">
-  <img class="bio-intro-photo" src="{{ url_for('static', filename='images/iam.png') }}">
+  <img class="bio-intro-photo" src="/static/images/iam.png">
 
   <div class="bio-grid teacher-bio">
     <img
       class="bio-photo"
-      src="{{ url_for('static', filename='images/nancy.jpg') }}"
-      onerror="this.src='{{ url_for('static', filename='images/nancy.jpg') }}'"
+      src="/static/images/nancy.jpg"
       alt="林老师照片">
 
     <!-- Collapse lives only around the text column -->
@@ -66,9 +65,8 @@
   <article class="bio-grid assistant-bio">
     <img
       class="bio-photo sm"
-      src="{{ url_for('static', filename='images/sab.jpg') }}"
-      alt="刘妍希（Sabrina）照片"
-      onerror="this.style.display='none'">
+      src="/static/images/sab.jpg"
+      alt="刘妍希（Sabrina）照片">
     <div class="bio-text">
       <h3>刘妍希 Sabrina（女儿）</h3>
       <p>大学：阿姆斯特丹大学, BSc Computational Social Science, MSc Complex Systems & Policy.<br>
@@ -85,9 +83,8 @@
   <article class="bio-grid assistant-bio">
     <img
       class="bio-photo sm"
-      src="{{ url_for('static', filename='images/seb.jpg') }}"
-      alt="刘宇酌（Sebastian）照片"
-      onerror="this.style.display='none'">
+      src="/static/images/seb.jpg"
+      alt="刘宇酌（Sebastian）照片">
     <div class="bio-text">
       <h3>刘宇酌 Sebastian（儿子）</h3>
       <p>大学：曼彻斯特大学, BSc Economics (Honours), MSc Economics.<br>
