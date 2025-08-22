@@ -230,3 +230,12 @@ figure, .slide { margin: 0; padding: 0; border: 0; }
   .contact-qr.overlap .bg{ display: none; } /* hide hi.png so QR is primary */
   .cta-text{ text-align: center; }
 }
+
+/* keep hover */
+.primary-nav a:hover::after { transform: scaleX(1); }
+
+/* stay-on underline when on the page */
+.primary-nav a.active::after,
+.primary-nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
