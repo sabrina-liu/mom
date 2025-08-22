@@ -41,11 +41,11 @@ def inject_globals():
 
 @app.route("/")
 def home():
-    return render_template("index.html", carousel=CAROUSEL)
+    return render_template("index.html", current_page="home", carousel=CAROUSEL)
 
 @app.route("/about/")
 def about():
-    return render_template("about.html")
+    return render_template("about.html", current_page="about")
 
 @app.route("/gallery/")
 def gallery():
@@ -54,11 +54,11 @@ def gallery():
     files.sort()
     if not files:
         files = [c["file"] for c in CAROUSEL]
-    return render_template("gallery.html", files=files)
+    return render_template("gallery.html", current_page="gallery", files=files)
 
 @app.route("/contact/")
 def contact():
-    return render_template("contact.html")
+    return render_template("contact.html", current_page="contact")
 
 if __name__ == "__main__":
     app.run(debug=True)
